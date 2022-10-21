@@ -1,8 +1,16 @@
-INCLUDEDIR=../include
-ODIR=../obj
-OUTPUTDIR=../bin
-SRCDIR=../src
+SRCDIR = ../src
+EXTDIR = ../external
+INCLUDEDIR = ../include
+OBJDIR = ../obj
+BINDIR = ../bin
+REPORTDIR = ../reports
+CFLAGS = -c -g -Wall -I${INCLUDEDIR} -I../external/include -DLOG_USE_COLOR
+
+
+
+
 all:
-        gcc -c -g -I ${INCLUDEDIR} ${SRCDIR}/main.c -o ${ODIR}/main.o
-        gcc -c -g -I ${INCLUDEDIR} ${SRCDIR}/utilities.c -o ${ODIR}/utilities.o
-        gcc ${ODIR}/main.o ${ODIR}/utilities.o -o ${OUTPUTDIR}/main.exe
+
+	gcc ${CFLAGS}  ${SRCDIR}/main.c -o ${OBJDIR}/main.o
+	gcc ${CFLAGS}  ${SRCDIR}/utilities.c -o ${OBJDIR}/utilities.o
+	gcc ${OBJDIR}/main.o ${OBJDIR}/utilities.o -o ${BINDIR}/main.bin
