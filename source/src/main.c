@@ -36,10 +36,7 @@ int main()
     	{
 			strcpy(f1->featureDesc,data);
     	}
-		printf("%d",f1->featureId);
-		printf("%d",f1->completionStatus);
-		printf("%s",f1->featureName);
-		printf("%s",f1->featureDesc);
+		
 	}
 	fclose(feature_file);
 	printf("\n\t#######################################################");
@@ -61,12 +58,19 @@ int main()
 			scanf("%s",userPassword);
 			int userBelonging;
 			userBelonging=checkLogin(userId,userPassword);
-			if (userBelonging==0){
-				printf("\nCheck your Login Credentials again!");
+			if (userBelonging==-1){
+				printf("\nEither userid or password is incorrect!");
+				exit(0);
+			}
+			else if(userBelonging==1){
+				printf("\nLogged in as team Lead!");
+				continue;
 			}
 			else{
-				printf("Login Success!");
+				printf("\nYou cannot login as Team Lead from here!");
+				exit(0);
 			}
+			
 
 		}
 		if (ch==2)
@@ -77,15 +81,22 @@ int main()
 			scanf("%d",&userId);
 			printf("\nEnter User Password:");
 			scanf("%s",userPassword);
-			int userBelonging=checkLogin(userId,userPassword);
-			if (userBelonging==0){
-				printf("\nCheck your Login Credentials again!");
+			int userBelonging;
+			userBelonging=checkLogin(userId,userPassword);
+			if (userBelonging==-1){
+				printf("\nEither userid or password is incorrect!");
+				exit(0);
+			}
+			else if(userBelonging==0){
+				printf("\nLogged in as team Member!");
+				continue;
 			}
 			else{
-				printf("Login Success!");
+				printf("\nYou cannot login as Team Lead from here!");
+				exit(0);
 			}
 		}
 		
 	}
-	printf("Exiting...!");
+	printf("\nExiting...!");
 }
