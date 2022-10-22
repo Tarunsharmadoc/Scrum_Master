@@ -30,8 +30,3 @@ int checkLogin(int userId,char password[]){
     fclose(usersDataFile);
     return userResult;
 }
-// int main(int userId,char password[]){
-    
-//     int a=checkLogin(99999,"pass000");
-//     printf("%d",a);
-// }

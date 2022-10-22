@@ -4,8 +4,41 @@
 #include <task.h>
 #include <userStory.h>
 #include <stdlib.h>
+void printUserStories(userStory *head){
+    if(head==NULL){
+        printf("Linked List is empty\n");
+    }
+    else{
+        printf("\n------------------------------User Stories----------------------------------------\n");
+		printf("\nStory ID:\nFeature ID:\tCompletion Status:\tStory Name:\tStory Info\n");
+        while (head!=NULL)
+        {
+            printf("\t%d",head->storyId);
+            printf("\t%d",head->featureId);
+            printf("\t\t%d\t\n",head->completionStatus);
+            printf("\t\t%s\t\n",head->storyName);
+            printf("\t\t%s\t\n",head->storyDesc);
+            head=head->next;
+        }
+        printf("\n-----------------------------END of User Stories----------------------------------\n");
+    }
+}
+void printFeatures(feature *f){
+	printf("\n----------------------------------Feature Details----------------------------------------------\n");
+	printf("\nFeature ID:\tCompletion Status:\tFeature Name:\tFeature Info:");
+	printf("\n\t%d",f->featureId);
+	printf("\t\t%d",f->completionStatus);
+	printf("\t\t%s",f->featureName);
+	printf("\t%s\n",f->featureDesc);
+	printf("\n--------------------------------END of Feature Details-------------------------------------\n");
+
+}
 int main()
 {
+
+	feature *f1=(feature*) malloc(sizeof(feature));
+	userStory *head = NULL ;
+	createUserStoryLinkedList(head);
 	FILE *feature_file=fopen("../external/features.csv","r");
     if (feature_file==NULL){
         printf("Feature File not found");
@@ -15,7 +48,6 @@ int main()
 		char featureFileData[500];
 		fgets(featureFileData,500,feature_file);
 		char* data;
-		feature *f1=(feature*) malloc(sizeof(feature));
 		data=strtok(featureFileData,",");
 		if ( data != NULL )
     	{
@@ -63,8 +95,19 @@ int main()
 				exit(0);
 			}
 			else if(userBelonging==1){
-				printf("\nLogged in as team Lead!");
-				continue;
+				printf("\nLogged in as team Lead!\n");
+				int tlChoice1=1;
+				while(tlChoice1!=0){
+					printf("1. To Print all Features, User Stories and Tasks:");
+					printf("\n2. To Add New User Story:");
+					printf("\n3. To Add New Task:\n");
+					scanf("%d",&tlChoice1);
+					if (tlChoice1==1){
+						printFeatures(f1);
+						printUserStories(head);
+					}
+				}
+				exit(0);
 			}
 			else{
 				printf("\nYou cannot login as Team Lead from here!");
