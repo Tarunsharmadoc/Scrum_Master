@@ -4,7 +4,10 @@
 #include <task.h>
 #include <userStory.h>
 #include <stdlib.h>
-
+#define STORY_NAME_LEN 100
+#define STORY_DESC_LEN 300
+#define TASK_NAME_LEN 100
+#define TASK_DESC_LEN 200
 void printFeatures(feature *f){
 	printf("\n----------------------------------Feature Details----------------------------------------------\n");
 	printf("\nFeature ID:\tCompletion Status:\tFeature Name:\tFeature Info:");
@@ -92,7 +95,44 @@ int main()
 						
 					}
 					else if(tlChoice1==2){
-						
+						int storyId,featureId,completionStatus;
+						char storyName[STORY_NAME_LEN];
+						char storyDesc[STORY_DESC_LEN];
+						printf("\nEnter User Story Details:");
+						printf("\nEnter Story ID:");
+						scanf("%d",&storyId);
+						printf("\nEnter Feature ID:");
+						scanf("%d",&featureId);
+						printf("\nEnter Completion Status:");
+						scanf("%d",&completionStatus);
+						printf("\nEnter Story Name:");
+						scanf("%s",storyName);
+						printf("\nEnter Story Desc:");
+						scanf("%s",storyDesc);
+						insert_end(storyId,featureId,completionStatus,storyName,storyDesc);
+						appendUserStoryCSV(storyId,featureId,completionStatus,storyName,storyDesc);
+						displayUserStoryLL();
+					}
+					else if(tlChoice1==3){
+						int taskId,storyId,completionStatusTask,userId;
+						char taskName[TASK_NAME_LEN];
+						char taskDesc[TASK_DESC_LEN];
+						printf("\nEnter Task Details:");
+						printf("\nEnter Task ID:");
+						scanf("%d",&taskId);
+						printf("\nEnter Story ID:");
+						scanf("%d",&storyId);
+						printf("\nEnter Completion Status:");
+						scanf("%d",&completionStatusTask);
+						printf("\nEnter User ID:");
+						scanf("%d",&userId);
+						printf("\nEnter Story Name:");
+						scanf("%s",taskName);
+						printf("\nEnter Story Desc:");
+						scanf("%s",taskDesc);
+						appendTaskLL(taskId,storyId,completionStatusTask,userId,taskName,taskDesc);
+						appendTasksCSV(taskId,storyId,completionStatusTask,userId,taskName,taskDesc);
+						displayTaskLL();
 					}
 				}
 				exit(0);

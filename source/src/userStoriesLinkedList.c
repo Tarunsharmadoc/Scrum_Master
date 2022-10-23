@@ -58,6 +58,26 @@ void displayUserStoryLL()
             printf("\n-----------------------------END of User Stories----------------------------------\n");
         }
 }
+void appendUserStoryCSV(int a,int b,int c,char name[],char desc[]){
+    FILE *userStoryFile=fopen("../external/userStories.csv","a");
+    if (userStoryFile==NULL){
+        printf("User Story File not found");
+        exit(0);
+    }
+    else{
+        fprintf(userStoryFile,"%c",'\n');
+        fprintf(userStoryFile,"%d",a);
+        fprintf(userStoryFile,"%c",',');
+        fprintf(userStoryFile,"%d",b);
+        fprintf(userStoryFile,"%c",',');
+        fprintf(userStoryFile,"%d",c);
+        fprintf(userStoryFile,"%c",',');
+        fprintf(userStoryFile,"%s",name);
+        fprintf(userStoryFile,"%c",',');
+        fprintf(userStoryFile,"%s",desc);
+    }   
+    fclose(userStoryFile);
+}
 void insert_end(int a,int b,int c,char name[],char desc[])
 {
         userStory *temp,*ptr;

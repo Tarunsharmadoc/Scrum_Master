@@ -137,3 +137,26 @@ void createTaskLLFromCSV(){
     }
     fclose(taskFile);
 }
+void appendTasksCSV(int a,int b,int c,int d,char name[],char desc[]){
+    FILE *taskFile=fopen("../external/tasks.csv","a");
+    if (taskFile==NULL){
+        printf("User Story File not found");
+        exit(0);
+    }
+    else{
+        fprintf(taskFile,"%c",'\n');
+        fprintf(taskFile,"%d",a);
+        fprintf(taskFile,"%c",',');
+        fprintf(taskFile,"%d",b);
+        fprintf(taskFile,"%c",',');
+        fprintf(taskFile,"%d",c);
+        fprintf(taskFile,"%c",',');
+        fprintf(taskFile,"%d",d);
+        fprintf(taskFile,"%c",',');
+        fprintf(taskFile,"%s",name);
+        fprintf(taskFile,"%c",',');
+        fprintf(taskFile,"%s",desc);
+    }   
+    fclose(taskFile);
+}
+
