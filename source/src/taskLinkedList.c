@@ -8,24 +8,25 @@
 // void create();
 // void display();
 // void insert_end();
-userStory *userStoryHead=NULL;
-void create(int info,int info1,int info2,char name[],char desc[])
+task *taskHead=NULL;
+void createTaskLL(int info,int info1,int info2,int info3,char name[],char desc[])
 {
-        userStory *temp,*ptr;
-        temp=(userStory *)malloc(sizeof(userStory));
-        temp->storyId=info;
-        temp->featureId=info1;
+        task *temp,*ptr;
+        temp=(task *)malloc(sizeof(task));
+        temp->taskId=info;
+        temp->storyId=info1;
         temp->completionStatus=info2;
-        strcpy(temp->storyName,name);
-        strcpy(temp->storyDesc,desc);
+        temp->userid=info3;
+        strcpy(temp->taskName,name);
+        strcpy(temp->taskDesc,desc);
         temp->next=NULL;
-        if(userStoryHead==NULL)
+        if(taskHead==NULL)
         {
-            userStoryHead=temp;
+            taskHead=temp;
         }
         else
         {
-            ptr=userStoryHead;
+            ptr=taskHead;
             while(ptr->next!=NULL)
             {
                 ptr=ptr->next;
@@ -33,54 +34,56 @@ void create(int info,int info1,int info2,char name[],char desc[])
             ptr->next=temp;
         }
 }
-void displayUserStoryLL()
+void displayTaskLL()
 {
-        userStory *ptr;
-        if(userStoryHead==NULL)
+        task *ptr;
+        if(taskHead==NULL)
         {
             printf("nList is empty:n");
             return;
         }
         else
         {
-            ptr=userStoryHead;
-            printf("\n------------------------------User Stories----------------------------------------\n");
-                printf("\n Story ID:\tFeature ID:\tCompletion Status:\tStory Name:\t\t\tStory Info\n");
+            ptr=taskHead;
+            printf("\n------------------------------Tasks----------------------------------------\n");
+                printf("\n Task ID:\tStory ID:\tCompletion Status:\tUser ID: \tTask Name:\t\t\tTask Info\n");
             while(ptr!=NULL)
             {
-                printf("\t%d\t\t",ptr->storyId);
-                printf("%d\t\t",ptr->featureId);
+                printf("\t%d\t\t",ptr->taskId);
+                printf("%d\t\t",ptr->storyId);
                 printf("%d\t",ptr->completionStatus);
-                printf("\t%s",ptr->storyName);
-                printf("\t\t%s\n",ptr->storyDesc);
+                printf("\t%d\t",ptr->userid);
+                printf("\t%s",ptr->taskName);
+                printf("\t\t%s\n",ptr->taskDesc);
                 ptr=ptr->next ;
             }
-            printf("\n-----------------------------END of User Stories----------------------------------\n");
+            printf("\n-----------------------------END of Tasks----------------------------------\n");
         }
 }
-void insert_end(int a,int b,int c,char name[],char desc[])
+void appendTaskLL(int a,int b,int c,int d,char name[],char desc[])
 {
-        userStory *temp,*ptr;
-        temp=(userStory *)malloc(sizeof(userStory));
+        task *temp,*ptr;
+        temp=(task *)malloc(sizeof(task));
         if(temp==NULL)
         {
             printf("nOut of Memory Space:n");
             return;
         }
         
-        temp->storyId=a;
-        temp->featureId=b;
+        temp->taskId=a;
+        temp->storyId=b;
         temp->completionStatus=c;
-        strcpy(temp->storyName,name);
-        strcpy(temp->storyDesc,desc);
+        temp->userid=d;
+        strcpy(temp->taskName,name);
+        strcpy(temp->taskDesc,desc);
         temp->next =NULL;
-        if(userStoryHead==NULL)
+        if(taskHead==NULL)
         {
-            userStoryHead=temp;
+            taskHead=temp;
         }
         else
         {
-            ptr=userStoryHead;
+            ptr=taskHead;
             while(ptr->next !=NULL)
             {
             ptr=ptr->next ;
@@ -88,27 +91,29 @@ void insert_end(int a,int b,int c,char name[],char desc[])
             ptr->next =temp;
         }
 }
-void createUserStoryLL(){
-    FILE *userStoryFile=fopen("../external/userStories.csv","r");
-    if (userStoryFile==NULL){
+void createTaskLLFromCSV(){
+    FILE *taskFile=fopen("../external/tasks.csv","r");
+    if (taskFile==NULL){
         printf("User Story File not found");
         exit(0);
     }
     else{
-		char userStoryFileData[LINE_SIZE];
+		char taskFileData[LINE_SIZE];
         char *data;
 		while(1){
-            if (fgets(userStoryFileData, LINE_SIZE, userStoryFile) == NULL){
+            if (fgets(taskFileData, LINE_SIZE, taskFile) == NULL){
                 break;
             }
             else{
                 // userStory *newStory = (userStory*)malloc (sizeof(userStory));
-                data=strtok(userStoryFileData,",");
+                data=strtok(taskFileData,",");
                 int a=atoi(data);
                 data=strtok(NULL,",");
                 int b=atoi(data);
                 data=strtok(NULL,",");
                 int c=atoi(data);
+                data=strtok(NULL,",");
+                int d=atoi(data);
                 char name[100];
                 char desc[300];
                 data=strtok(NULL,",");
@@ -125,10 +130,10 @@ void createUserStoryLL(){
                 // data=strtok(NULL,",");
                 // strcpy(newStory->storyDesc,data);
                 // newStory->next=NULL;
-                insert_end(a,b,c,name,desc);
+                appendTaskLL(a,b,c,d,name,desc);
                 
             }
         }
     }
-    fclose(userStoryFile);
+    fclose(taskFile);
 }

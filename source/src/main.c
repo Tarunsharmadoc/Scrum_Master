@@ -17,7 +17,6 @@ void printFeatures(feature *f){
 }
 int main()
 {
-	createUserStoryLL();
 	feature *f1=(feature*) malloc(sizeof(feature));
 	FILE *feature_file=fopen("../external/features.csv","r");
     if (feature_file==NULL){
@@ -62,6 +61,8 @@ int main()
 		scanf("%d",&ch);
 		if (ch==1)
 		{
+			createUserStoryLL();
+			createTaskLLFromCSV();
 			int userId;
 			char userPassword[50];
 			printf("\nEnter User ID:");
@@ -85,7 +86,9 @@ int main()
 					if (tlChoice1==1){
 						printFeatures(f1);
 						printf("\n");
-						display();
+						displayUserStoryLL();
+						printf("\n");
+						displayTaskLL();
 						
 					}
 					else if(tlChoice1==2){
