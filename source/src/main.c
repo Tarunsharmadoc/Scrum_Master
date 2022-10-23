@@ -4,25 +4,7 @@
 #include <task.h>
 #include <userStory.h>
 #include <stdlib.h>
-void printUserStories(userStory *head){
-    if(head==NULL){
-        printf("Linked List is empty\n");
-    }
-    else{
-        printf("\n------------------------------User Stories----------------------------------------\n");
-		printf("\nStory ID:\nFeature ID:\tCompletion Status:\tStory Name:\tStory Info\n");
-        while (head!=NULL)
-        {
-            printf("\t%d",head->storyId);
-            printf("\t%d",head->featureId);
-            printf("\t\t%d\t\n",head->completionStatus);
-            printf("\t\t%s\t\n",head->storyName);
-            printf("\t\t%s\t\n",head->storyDesc);
-            head=head->next;
-        }
-        printf("\n-----------------------------END of User Stories----------------------------------\n");
-    }
-}
+
 void printFeatures(feature *f){
 	printf("\n----------------------------------Feature Details----------------------------------------------\n");
 	printf("\nFeature ID:\tCompletion Status:\tFeature Name:\tFeature Info:");
@@ -35,10 +17,8 @@ void printFeatures(feature *f){
 }
 int main()
 {
-
+	createUserStoryLL();
 	feature *f1=(feature*) malloc(sizeof(feature));
-	userStory *head = NULL ;
-	createUserStoryLinkedList(head);
 	FILE *feature_file=fopen("../external/features.csv","r");
     if (feature_file==NULL){
         printf("Feature File not found");
@@ -104,7 +84,12 @@ int main()
 					scanf("%d",&tlChoice1);
 					if (tlChoice1==1){
 						printFeatures(f1);
-						printUserStories(head);
+						printf("\n");
+						display();
+						
+					}
+					else if(tlChoice1==2){
+						
 					}
 				}
 				exit(0);
