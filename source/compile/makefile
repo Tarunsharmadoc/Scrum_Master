@@ -13,6 +13,6 @@ all:
 
 	gcc ${CFLAGS}  ${SRCDIR}/main.c -o ${OBJDIR}/main.o
 	gcc ${CFLAGS}  ${SRCDIR}/utilities.c -o ${OBJDIR}/utilities.o
-	gcc ${CFLAGS}  ${SRCDIR}/userStoriesLinkedList.c -o ${OBJDIR}/userStoriesLinkedList.o
-	gcc ${CFLAGS}  ${SRCDIR}/tasksLinkedList.c -o ${OBJDIR}/tasksLinkedList.o
-	gcc ${OBJDIR}/main.o ${OBJDIR}/utilities.o ${OBJDIR}/userStoriesLinkedList.o ${OBJDIR}/tasksLinkedList.o -o  ${BINDIR}/main.bin
+	gcc ${CFLAGS}  ${SRCDIR}/userStoriesCRUD.c -o ${OBJDIR}/userStoriesCRUD.o
+	gcc ${CFLAGS}  ${SRCDIR}/taskCRUD.c -o ${OBJDIR}/taskCRUD.o
+	gcc ${OBJDIR}/main.o ${OBJDIR}/utilities.o ${OBJDIR}/userStoriesCRUD.o ${OBJDIR}/taskCRUD.o -o  ${BINDIR}/main.bin

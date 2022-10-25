@@ -5,9 +5,7 @@
 #include <userStory.h>
 #include <task.h>
 #define LINE_SIZE 500
-// void create();
-// void display();
-// void insert_end();
+
 task *taskHead=NULL;
 void createTaskLL(int info,int info1,int info2,int info3,char name[],char desc[])
 {
@@ -62,34 +60,35 @@ void displayTaskLL()
 }
 void appendTaskLL(int a,int b,int c,int d,char name[],char desc[])
 {
-        task *temp,*ptr;
-        temp=(task *)malloc(sizeof(task));
-        if(temp==NULL)
-        {
-            printf("nOut of Memory Space:n");
-            return;
-        }
+    task *temp,*ptr;
+    temp=(task *)malloc(sizeof(task));
+    if(temp==NULL)
+    {
+        printf("nOut of Memory Space:n");
+        return;
+    }
         
-        temp->taskId=a;
-        temp->storyId=b;
-        temp->completionStatus=c;
-        temp->userid=d;
-        strcpy(temp->taskName,name);
-        strcpy(temp->taskDesc,desc);
-        temp->next =NULL;
-        if(taskHead==NULL)
+    temp->taskId=a;
+    temp->storyId=b;
+    temp->completionStatus=c;
+    temp->userid=d;
+    strcpy(temp->taskName,name);
+    strcpy(temp->taskDesc,desc);
+    temp->next =NULL;
+    if(taskHead==NULL)
+    {
+        taskHead=temp;
+    }
+    else
+    {
+        ptr=taskHead;
+        while(ptr->next !=NULL)
         {
-            taskHead=temp;
-        }
-        else
-        {
-            ptr=taskHead;
-            while(ptr->next !=NULL)
-            {
             ptr=ptr->next ;
-            }
-            ptr->next =temp;
         }
+        ptr->next =temp;
+    }
+    
 }
 void createTaskLLFromCSV(){
     FILE *taskFile=fopen("../external/tasks.csv","r");
@@ -105,7 +104,6 @@ void createTaskLLFromCSV(){
                 break;
             }
             else{
-                // userStory *newStory = (userStory*)malloc (sizeof(userStory));
                 data=strtok(taskFileData,",");
                 int a=atoi(data);
                 data=strtok(NULL,",");
@@ -120,16 +118,6 @@ void createTaskLLFromCSV(){
                 strcpy(name,data);
                 data=strtok(NULL,",");
                 strcpy(desc,data);
-                // newStory->storyId=atoi(data);
-                // data=strtok(NULL,",");
-                // newStory->completionStatus=atoi(data);
-                // data=strtok(NULL,",");
-                // newStory->featureId=atoi(data);
-                // data=strtok(NULL,",");
-                // strcpy(newStory->storyName,data);
-                // data=strtok(NULL,",");
-                // strcpy(newStory->storyDesc,data);
-                // newStory->next=NULL;
                 appendTaskLL(a,b,c,d,name,desc);
                 
             }

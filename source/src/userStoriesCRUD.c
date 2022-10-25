@@ -5,9 +5,6 @@
 #include <userStory.h>
 #include <task.h>
 #define LINE_SIZE 500
-// void create();
-// void display();
-// void insert_end();
 userStory *userStoryHead=NULL;
 void create(int info,int info1,int info2,char name[],char desc[])
 {
@@ -122,7 +119,6 @@ void createUserStoryLL(){
                 break;
             }
             else{
-                // userStory *newStory = (userStory*)malloc (sizeof(userStory));
                 data=strtok(userStoryFileData,",");
                 int a=atoi(data);
                 data=strtok(NULL,",");
@@ -135,16 +131,6 @@ void createUserStoryLL(){
                 strcpy(name,data);
                 data=strtok(NULL,",");
                 strcpy(desc,data);
-                // newStory->storyId=atoi(data);
-                // data=strtok(NULL,",");
-                // newStory->completionStatus=atoi(data);
-                // data=strtok(NULL,",");
-                // newStory->featureId=atoi(data);
-                // data=strtok(NULL,",");
-                // strcpy(newStory->storyName,data);
-                // data=strtok(NULL,",");
-                // strcpy(newStory->storyDesc,data);
-                // newStory->next=NULL;
                 insert_end(a,b,c,name,desc);
                 
             }
