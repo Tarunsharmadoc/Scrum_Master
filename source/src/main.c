@@ -21,6 +21,8 @@ void printFeatures(feature *f){
 int main()
 {
 	feature *f1=(feature*) malloc(sizeof(feature));
+	createUserStoryLL();
+	createTaskLLFromCSV();
 	FILE *feature_file=fopen("../external/features.csv","r");
     if (feature_file==NULL){
         printf("Feature File not found");
@@ -64,8 +66,6 @@ int main()
 		scanf("%d",&ch);
 		if (ch==1)
 		{
-			createUserStoryLL();
-			createTaskLLFromCSV();
 			int userId;
 			char userPassword[50];
 			printf("\nEnter User ID:");
@@ -82,7 +82,7 @@ int main()
 				printf("\nLogged in as team Lead!\n");
 				int tlChoice1=1;
 				while(tlChoice1!=0){
-					printf("1. To Print all Features, User Stories and Tasks:");
+					printf("\n1. To Print all Features, User Stories and Tasks:");
 					printf("\n2. To Add New User Story:");
 					printf("\n3. To Add New Task:\n");
 					scanf("%d",&tlChoice1);
@@ -159,8 +159,26 @@ int main()
 				exit(0);
 			}
 			else if(userBelonging==0){
-				printf("\nLogged in as team Member!");
-				continue;
+				printf("\nLogged in as team Member!\n");
+				int tlchoice2=1;
+				while(tlchoice2!=0){
+					printf("\n1. To print My Assigned Tasks:");
+					printf("\n2. To Update Task:\n");
+					scanf("%d",&tlchoice2);
+					if (tlchoice2==1){
+						displayUserTasks(userId);
+					}
+					else{
+						int taskId,completionStatus;
+						printf("\n Enter Task ID to Update:");
+						scanf("%d",&taskId);
+						printf("\n Enter New Completion Status:");
+						scanf("%d",&completionStatus);
+						updateCompletionStatus(taskId,completionStatus);
+						continue;
+					}
+				}
+				exit(0);
 			}
 			else{
 				printf("\nYou cannot login as Team Lead from here!");

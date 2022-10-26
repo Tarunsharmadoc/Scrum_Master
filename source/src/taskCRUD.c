@@ -32,6 +32,26 @@ void createTaskLL(int info,int info1,int info2,int info3,char name[],char desc[]
             ptr->next=temp;
         }
 }
+void updateCompletionStatus(int taskId,int newCompletionStatus){
+    task *ptr;
+    if(taskHead==NULL)
+    {
+        printf("nList is empty:n");
+        return;
+    }
+    else{
+        ptr=taskHead;
+        while(ptr!=NULL)
+        {
+            if (ptr->taskId==taskId){
+                ptr->completionStatus=newCompletionStatus;
+                printf("\nTask Updated\n");
+                break;
+            }
+            ptr=ptr->next ;
+        }
+    }
+}
 void displayTaskLL()
 {
         task *ptr;
@@ -57,6 +77,32 @@ void displayTaskLL()
             }
             printf("\n-----------------------------END of Tasks----------------------------------\n");
         }
+}
+void displayUserTasks(int userid){
+    task *ptr;
+    if(taskHead==NULL)
+    {
+        printf("\nList is empty:\n");
+        return;
+    }
+    else{
+        ptr=taskHead;
+        printf("\n------------------------------Your Assigned Tasks----------------------------------------\n");
+        printf("\n Task ID:\tStory ID:\tCompletion Status:\tUser ID: \tTask Name:\t\t\tTask Info\n");
+        while(ptr!=NULL)
+        {
+            if (ptr->userid==userid){
+                printf("\t%d\t\t",ptr->taskId);
+                printf("%d\t\t",ptr->storyId);
+                printf("%d\t",ptr->completionStatus);
+                printf("\t%d\t",ptr->userid);
+                printf("\t%s",ptr->taskName);
+                printf("\t\t%s\n",ptr->taskDesc);
+            }
+            ptr=ptr->next ;
+        }
+        printf("\n-----------------------------END of Assigned Tasks----------------------------------\n");
+    }
 }
 void appendTaskLL(int a,int b,int c,int d,char name[],char desc[])
 {
