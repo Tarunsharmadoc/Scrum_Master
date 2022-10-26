@@ -7,5 +7,5 @@ typedef struct _userStory_
     int completionStatus;
     char storyName[STORY_NAME_LEN];
     char storyDesc[STORY_DESC_LEN];
-    struct _story_ *next;
+    struct _userStory_ *next;
 } userStory;

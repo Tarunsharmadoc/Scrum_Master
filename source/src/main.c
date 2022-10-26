@@ -126,9 +126,9 @@ int main()
 						scanf("%d",&completionStatusTask);
 						printf("\nEnter User ID:");
 						scanf("%d",&userId);
-						printf("\nEnter Story Name:");
+						printf("\nEnter Task Name:");
 						scanf("%s",taskName);
-						printf("\nEnter Story Desc:");
+						printf("\nEnter Task Desc:");
 						scanf("%s",taskDesc);
 						appendTaskLL(taskId,storyId,completionStatusTask,userId,taskName,taskDesc);
 						appendTasksCSV(taskId,storyId,completionStatusTask,userId,taskName,taskDesc);
@@ -167,15 +167,20 @@ int main()
 					scanf("%d",&tlchoice2);
 					if (tlchoice2==1){
 						displayUserTasks(userId);
+						continue;
 					}
-					else{
+					else if (tlchoice2==2){
 						int taskId,completionStatus;
 						printf("\n Enter Task ID to Update:");
 						scanf("%d",&taskId);
 						printf("\n Enter New Completion Status:");
 						scanf("%d",&completionStatus);
 						updateCompletionStatus(taskId,completionStatus);
+						calculations();
 						continue;
+					}
+					else{
+						exit(0);
 					}
 				}
 				exit(0);
