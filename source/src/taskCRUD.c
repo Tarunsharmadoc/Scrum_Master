@@ -208,3 +208,12 @@ void appendTasksCSV(int a,int b,int c,int d,char name[],char desc[]){
     }   
     fclose(taskFile);
 }
+void freeTasksLL(){
+    task *tempNode=NULL;
+    while ((tempNode=taskHead)!=NULL)
+    {
+        taskHead=taskHead->next;
+        free(tempNode);
+    }
+    
+}

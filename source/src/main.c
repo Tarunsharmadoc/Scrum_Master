@@ -5,18 +5,14 @@
 #include <userStory.h>
 #include <main.h>
 #include <stdlib.h>
-// #define STORY_NAME_LEN 100
-// #define STORY_DESC_LEN 300
-// #define TASK_NAME_LEN 100
-// #define TASK_DESC_LEN 200
 int main()
 {
 	loadFeatures();
 	loadUserStories();
 	loadTasks();
-	printf("\n\t#######################################################");
-    	printf("\n\t## Welcome to Scrum Sprint Management ###");
-    	printf("\n\t#######################################################");
+	printf("\n\t####################################################");
+    printf("\n\t###     Welcome to Scrum Sprint Management      ###");
+    printf("\n\t###################################################");
 	int ch=1;
 	while(ch!=0)
 	{
@@ -36,6 +32,7 @@ int main()
 			if (userBelonging==-1)
 			{
 				printf("\nEither userid or password is incorrect!");
+				freeStructures();
 				exit(0);
 			}
 			else if(userBelonging==1)
@@ -101,11 +98,13 @@ int main()
 						displayTaskLL();
 					}
 				}
+				freeStructures();
 				exit(0);
 			}
 			else
 			{
 				printf("\nYou cannot login as Scrum Master from here!");
+				freeStructures();
 				exit(0);
 			}
 		}
@@ -122,6 +121,7 @@ int main()
 			if (userBelonging==-1)
 			{
 				printf("\nEither userid or password is incorrect!");
+				freeStructures();
 				exit(0);
 			}
 			else if(userBelonging==0)
@@ -151,17 +151,22 @@ int main()
 					}
 					else
 					{
+						freeStructures();
 						exit(0);
 					}
 				}
+				freeStructures();
 				exit(0);
 			}
 			else
 			{
 				printf("\nYou cannot login as Scrum Master from here!");
+				freeStructures();
 				exit(0);
 			}
 		}
 	}
+	freeStructures();
 	printf("\nExiting...!");
+	exit(0);
 }

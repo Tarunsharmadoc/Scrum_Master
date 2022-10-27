@@ -26,5 +26,8 @@ extern void updateUserStoriesLLfromTaskData(task *taskHead);
 extern void updateUserStoryCSVFromLL();
 extern void loadUserStories();
 extern int checkLogin(int userId,char password[]);
-
+extern void freeStructures();
+extern void freeUserStoriesLL();
+extern void freeTasksLL();
+extern void freeFeatures();
 #endif

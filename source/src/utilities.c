@@ -31,3 +31,9 @@ int checkLogin(int userId,char password[]){
     fclose(usersDataFile);
     return userResult;
 }
+
+void freeStructures(){
+    freeUserStoriesLL();
+	freeTasksLL();
+    freeFeatures();
+}

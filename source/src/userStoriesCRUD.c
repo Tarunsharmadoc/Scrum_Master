@@ -7,7 +7,7 @@
 #include <task.h>
 #define LINE_SIZE 500
 userStory *userStoryHead=NULL;
-void create(int info,int info1,double info2,char name[],char desc[])
+void createUserStoryLL(int info,int info1,double info2,char name[],char desc[])
 {
         userStory *temp,*ptr;
         temp=(userStory *)malloc(sizeof(userStory));
@@ -113,7 +113,7 @@ void updateUserStoriesLLfromTaskData(task *taskHead){
             }
             taskPtr=taskPtr->next;
         }
-        userStoryptr->completionStatus=totalCompletionStatus/countOfNodes;
+        userStoryptr->completionStatus=(double)totalCompletionStatus/(double)countOfNodes;
         userStoryptr=userStoryptr->next;
     }
     updateUserStoryCSVFromLL();
@@ -169,4 +169,13 @@ void loadUserStories(){
         }
     }
     fclose(userStoryFile);
+}
+void freeUserStoriesLL(){
+    userStory *tempNode=NULL;
+    while ((tempNode=userStoryHead)!=NULL)
+    {
+        userStoryHead=userStoryHead->next;
+        free(tempNode);
+    }
+    
 }

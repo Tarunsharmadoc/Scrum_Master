@@ -53,5 +53,7 @@ void loadFeatures(){
 	}
 	fclose(feature_file);
 	f1=temp;
-	
+}
+void freeFeatures(){
+	free(f1);
 }
