@@ -1,3 +1,5 @@
+#pragma once
+
 #define TASK_NAME_LEN 100
 #define TASK_DESC_LEN 200
 typedef struct _task_

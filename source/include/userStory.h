@@ -1,3 +1,5 @@
+#pragma once
+
 #define STORY_NAME_LEN 100
 #define STORY_DESC_LEN 300
 typedef struct _userStory_

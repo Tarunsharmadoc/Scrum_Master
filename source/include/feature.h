@@ -1,3 +1,5 @@
+#pragma once
+
 #define FEATURE_NAME_LEN 100
 #define FEATURE_DESC_LEN 300
 typedef struct _feature_

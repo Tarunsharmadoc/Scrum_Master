@@ -4,11 +4,14 @@
 #include <task.h>
 #include <userStory.h>
 #include <stdlib.h>
+
 #define STORY_NAME_LEN 100
 #define STORY_DESC_LEN 300
 #define TASK_NAME_LEN 100
 #define TASK_DESC_LEN 200
-void printFeatures(feature *f){
+
+void printFeatures(feature *f)
+{
 	printf("\n----------------------------------Feature Details----------------------------------------------\n");
 	printf("\nFeature ID:\tCompletion Status:\tFeature Name:\tFeature Info:");
 	printf("\n\t%d",f->featureId);
@@ -18,50 +21,53 @@ void printFeatures(feature *f){
 	printf("\n--------------------------------END of Feature Details-------------------------------------\n");
 
 }
+
 int main()
 {
 	feature *f1=(feature*) malloc(sizeof(feature));
 	createUserStoryLL();
 	createTaskLLFromCSV();
 	FILE *feature_file=fopen("../external/features.csv","r");
-    if (feature_file==NULL){
-        printf("Feature File not found");
-        exit(0);
-    }
-	else{
+	if (feature_file==NULL)
+        {
+        	printf("Feature File not found");
+        	exit(0);
+    	}
+	else
+	{
 		char featureFileData[500];
 		fgets(featureFileData,500,feature_file);
 		char* data;
 		data=strtok(featureFileData,",");
 		if ( data != NULL )
-    	{
+    		{
 			f1->featureId=atoi(data);
-    	}
+    		}
 		data=strtok(NULL,",");
 		if ( data != NULL )
-    	{
+    		{
 			f1->completionStatus=atoi(data);
-    	}
+    		}
 		data=strtok(NULL,",");
 		if ( data != NULL )
-    	{
+    		{
 			strcpy(f1->featureName,data);
-    	}
+    		}
 		data=strtok(NULL,",");
 		if ( data != NULL )
-    	{
+    		{
 			strcpy(f1->featureDesc,data);
-    	}
-		
+    		}
 	}
+
 	fclose(feature_file);
 	printf("\n\t#######################################################");
-    printf("\n\t## Welcome to Scrum Sprint Management ###");
-    printf("\n\t#######################################################");
+    	printf("\n\t## Welcome to Scrum Sprint Management ###");
+    	printf("\n\t#######################################################");
 	int ch=1;
 	while(ch!=0)
 	{
-		printf("\n1 to Login as Team Lead:");
+		printf("\n1 to Login as Scrum Master:");
 		printf("\n2 to Login as Team Member:\n");
 		scanf("%d",&ch);
 		if (ch==1)
@@ -74,27 +80,31 @@ int main()
 			scanf("%s",userPassword);
 			int userBelonging;
 			userBelonging=checkLogin(userId,userPassword);
-			if (userBelonging==-1){
+			if (userBelonging==-1)
+			{
 				printf("\nEither userid or password is incorrect!");
 				exit(0);
 			}
-			else if(userBelonging==1){
-				printf("\nLogged in as team Lead!\n");
+			else if(userBelonging==1)
+			{
+				printf("\nLogged in as Scrum Master!\n");
 				int tlChoice1=1;
-				while(tlChoice1!=0){
+				while(tlChoice1!=0)
+				{
 					printf("\n1. To Print all Features, User Stories and Tasks:");
 					printf("\n2. To Add New User Story:");
 					printf("\n3. To Add New Task:\n");
 					scanf("%d",&tlChoice1);
-					if (tlChoice1==1){
+					if (tlChoice1==1)
+					{
 						printFeatures(f1);
 						printf("\n");
 						displayUserStoryLL();
 						printf("\n");
 						displayTaskLL();
-						
 					}
-					else if(tlChoice1==2){
+					else if(tlChoice1==2)
+					{
 						int storyId,featureId,completionStatus;
 						char storyName[STORY_NAME_LEN];
 						char storyDesc[STORY_DESC_LEN];
@@ -107,13 +117,14 @@ int main()
 						scanf("%d",&completionStatus);
 						printf("\nEnter Story Name:");
 						scanf("%s",storyName);
-						printf("\nEnter Story Desc:");
+						printf("\nEnter Story Description:");
 						scanf("%s",storyDesc);
 						insert_end(storyId,featureId,completionStatus,storyName,storyDesc);
 						appendUserStoryCSV(storyId,featureId,completionStatus,storyName,storyDesc);
 						displayUserStoryLL();
 					}
-					else if(tlChoice1==3){
+					else if(tlChoice1==3)
+					{
 						int taskId,storyId,completionStatusTask,userId;
 						char taskName[TASK_NAME_LEN];
 						char taskDesc[TASK_DESC_LEN];
@@ -128,7 +139,7 @@ int main()
 						scanf("%d",&userId);
 						printf("\nEnter Task Name:");
 						scanf("%s",taskName);
-						printf("\nEnter Task Desc:");
+						printf("\nEnter Task Description:");
 						scanf("%s",taskDesc);
 						appendTaskLL(taskId,storyId,completionStatusTask,userId,taskName,taskDesc);
 						appendTasksCSV(taskId,storyId,completionStatusTask,userId,taskName,taskDesc);
@@ -137,12 +148,11 @@ int main()
 				}
 				exit(0);
 			}
-			else{
-				printf("\nYou cannot login as Team Lead from here!");
+			else
+			{
+				printf("\nYou cannot login as Scrum Master from here!");
 				exit(0);
 			}
-			
-
 		}
 		if (ch==2)
 		{
@@ -154,22 +164,27 @@ int main()
 			scanf("%s",userPassword);
 			int userBelonging;
 			userBelonging=checkLogin(userId,userPassword);
-			if (userBelonging==-1){
+			if (userBelonging==-1)
+			{
 				printf("\nEither userid or password is incorrect!");
 				exit(0);
 			}
-			else if(userBelonging==0){
+			else if(userBelonging==0)
+			{
 				printf("\nLogged in as team Member!\n");
 				int tlchoice2=1;
-				while(tlchoice2!=0){
+				while(tlchoice2!=0)
+				{
 					printf("\n1. To print My Assigned Tasks:");
 					printf("\n2. To Update Task:\n");
 					scanf("%d",&tlchoice2);
-					if (tlchoice2==1){
+					if (tlchoice2==1)
+					{
 						displayUserTasks(userId);
 						continue;
 					}
-					else if (tlchoice2==2){
+					else if (tlchoice2==2)
+					{
 						int taskId,completionStatus;
 						printf("\n Enter Task ID to Update:");
 						scanf("%d",&taskId);
@@ -179,18 +194,19 @@ int main()
 						calculations();
 						continue;
 					}
-					else{
+					else
+					{
 						exit(0);
 					}
 				}
 				exit(0);
 			}
-			else{
-				printf("\nYou cannot login as Team Lead from here!");
+			else
+			{
+				printf("\nYou cannot login as Scrum Master from here!");
 				exit(0);
 			}
 		}
-		
 	}
 	printf("\nExiting...!");
 }
