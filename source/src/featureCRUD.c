@@ -3,21 +3,22 @@
 #include <feature.h>
 #include <task.h>
 #include <userStory.h>
+#include <main.h>
 #include <stdlib.h>
 #define LINE_SIZE 500
 feature *f1=NULL;
 void printFeatures(){
-	printf("\n----------------------------------Feature Details----------------------------------------------\n");
-	printf("\nFeature ID:\tCompletion Status:\tFeature Name:\tFeature Info:");
+	printf("\n------------------------------------------------Feature Details------------------------------------------------\n");
+	printf("\nFeature ID:\tCompletion Status:\tFeature Name:\t\t\tFeature Info:");
 	printf("\n\t%d",f1->featureId);
 	printf("\t\t%lf",f1->completionStatus);
-	printf("\t\t%s",f1->featureName);
-	printf("\t%s\n",f1->featureDesc);
-	printf("\n--------------------------------END of Feature Details-------------------------------------\n");
+	printf("\t%s",f1->featureName);
+	printf("\t\t\t%s\n",f1->featureDesc);
+	printf("\n--------------------------------------------END of Feature Details---------------------------------------------\n");
 
 }
 
-void loadFeature(){
+void loadFeatures(){
 	feature *temp;
     temp=(feature *)malloc(sizeof(feature));
     FILE *feature_file=fopen("../external/features.csv","r");

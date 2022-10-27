@@ -3,6 +3,7 @@
 #include <string.h>
 #include <feature.h>
 #include <userStory.h>
+#include <main.h>
 #include <task.h>
 #define LINE_SIZE 500
 
@@ -87,8 +88,8 @@ void displayTaskLL()
         else
         {
             ptr=taskHead;
-            printf("\n------------------------------Tasks----------------------------------------\n");
-                printf("\n Task ID:\tStory ID:\tCompletion Status:\tUser ID: \tTask Name:\t\t\tTask Info\n");
+            printf("\n------------------------------------------------Tasks------------------------------------------------\n");
+                printf("\n Task ID:\tStory ID:\tCompletion Status:\tUser ID: \tTask Name:\t\t\t\t\tTask Info\n");
             while(ptr!=NULL)
             {
                 printf("\t%d\t\t",ptr->taskId);
@@ -96,10 +97,10 @@ void displayTaskLL()
                 printf("%d\t",ptr->completionStatus);
                 printf("\t%d\t",ptr->userid);
                 printf("\t%s",ptr->taskName);
-                printf("\t\t%s\n",ptr->taskDesc);
+                printf("\t\t\t%s\n",ptr->taskDesc);
                 ptr=ptr->next ;
             }
-            printf("\n-----------------------------END of Tasks----------------------------------\n");
+            printf("\n-------------------------------------------END of Tasks---------------------------------------------\n");
         }
 }
 void displayUserTasks(int userid){
@@ -160,7 +161,7 @@ void appendTaskLL(int a,int b,int c,int d,char name[],char desc[])
     }
     
 }
-void createTaskLLFromCSV(){
+void loadTasks(){
     FILE *taskFile=fopen("../external/tasks.csv","r");
     if (taskFile==NULL){
         printf("User Story File not found");
@@ -204,19 +205,6 @@ void appendTasksCSV(int a,int b,int c,int d,char name[],char desc[]){
     }
     else{
         fprintf(taskFile,"%d,%d,%d,%d,%s,%s\n",a,b,c,d,name,desc);
-        // fprintf(taskFile,"\n");
-        // fprintf(taskFile,"%d",a);
-        // fprintf(taskFile,"%c",',');
-        // fprintf(taskFile,"%d",b);
-        // fprintf(taskFile,"%c",',');
-        // fprintf(taskFile,"%d",c);
-        // fprintf(taskFile,"%c",',');
-        // fprintf(taskFile,"%d",d);
-        // fprintf(taskFile,"%c",',');
-        // fprintf(taskFile,"%s",name);
-        // fprintf(taskFile,"%c",',');
-        // fprintf(taskFile,"%s",desc);
-        // fprintf(taskFile,"\n");
     }   
     fclose(taskFile);
 }

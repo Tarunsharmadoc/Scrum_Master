@@ -3,6 +3,7 @@
 #include <feature.h>
 #include <task.h>
 #include <userStory.h>
+#include <main.h>
 #include <stdlib.h>
 int checkLogin(int userId,char password[]){
     int userResult=-1;

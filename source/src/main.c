@@ -3,19 +3,17 @@
 #include <feature.h>
 #include <task.h>
 #include <userStory.h>
+#include <main.h>
 #include <stdlib.h>
-
-#define STORY_NAME_LEN 100
-#define STORY_DESC_LEN 300
-#define TASK_NAME_LEN 100
-#define TASK_DESC_LEN 200
-
-
+// #define STORY_NAME_LEN 100
+// #define STORY_DESC_LEN 300
+// #define TASK_NAME_LEN 100
+// #define TASK_DESC_LEN 200
 int main()
 {
-	loadFeature();
-	createUserStoryLL();
-	createTaskLLFromCSV();
+	loadFeatures();
+	loadUserStories();
+	loadTasks();
 	printf("\n\t#######################################################");
     	printf("\n\t## Welcome to Scrum Sprint Management ###");
     	printf("\n\t#######################################################");
