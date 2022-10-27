@@ -6,7 +6,7 @@
 #include <task.h>
 #define LINE_SIZE 500
 userStory *userStoryHead=NULL;
-void create(int info,int info1,int info2,char name[],char desc[])
+void create(int info,int info1,double info2,char name[],char desc[])
 {
         userStory *temp,*ptr;
         temp=(userStory *)malloc(sizeof(userStory));
@@ -47,7 +47,7 @@ void displayUserStoryLL()
             {
                 printf("\t%d\t\t",ptr->storyId);
                 printf("%d\t\t",ptr->featureId);
-                printf("%d\t",ptr->completionStatus);
+                printf("%lf\t",ptr->completionStatus);
                 printf("\t%s",ptr->storyName);
                 printf("\t\t%s\n",ptr->storyDesc);
                 ptr=ptr->next ;
@@ -55,14 +55,14 @@ void displayUserStoryLL()
             printf("\n-----------------------------END of User Stories----------------------------------\n");
         }
 }
-void appendUserStoryCSV(int a,int b,int c,char name[],char desc[]){
+void appendUserStoryCSV(int a,int b,double c,char name[],char desc[]){
     FILE *userStoryFile=fopen("../external/userStories.csv","a");
     if (userStoryFile==NULL){
         printf("User Story File not found");
         exit(0);
     }
     else{
-        fprintf(userStoryFile,"%d,%d,%d,%s,%s\n",a,b,c,name,desc);
+        fprintf(userStoryFile,"%d,%d,%lf,%s,%s\n",a,b,c,name,desc);
         // fprintf(userStoryFile,"%c",'\n');
         // fprintf(userStoryFile,"%d",a);
         // fprintf(userStoryFile,"%c",',');
@@ -76,7 +76,7 @@ void appendUserStoryCSV(int a,int b,int c,char name[],char desc[]){
     }   
     fclose(userStoryFile);
 }
-void insert_end(int a,int b,int c,char name[],char desc[])
+void insert_end(int a,int b,double c,char name[],char desc[])
 {
     userStory *temp,*ptr;
     temp=(userStory *)malloc(sizeof(userStory));
@@ -126,7 +126,6 @@ void updateUserStoriesLLfromTaskData(task *taskHead){
         userStoryptr=userStoryptr->next;
     }
     updateUserStoryCSVFromLL();
-    printf("completed calculations");
 }
 void updateUserStoryCSVFromLL(){
     userStory *ptr;
@@ -140,7 +139,7 @@ void updateUserStoryCSVFromLL(){
         FILE *taskFile=fopen("../external/userStories.csv","w");
         while(ptr!=NULL)
         {
-            fprintf(taskFile,"%d,%d,%d,%s,%s\n",ptr->storyId,ptr->featureId,ptr->completionStatus,ptr->storyName,ptr->storyDesc);
+            fprintf(taskFile,"%d,%d,%lf,%s,%s\n",ptr->storyId,ptr->featureId,ptr->completionStatus,ptr->storyName,ptr->storyDesc);
             ptr=ptr->next ;
         }
         fclose(taskFile);
@@ -166,7 +165,7 @@ void createUserStoryLL(){
                     data=strtok(NULL,",");
                     int b=atoi(data);
                     data=strtok(NULL,",");
-                    int c=atoi(data);
+                    double c=atoi(data);
                     char name[100];
                     char desc[300];
                     data=strtok(NULL,",");

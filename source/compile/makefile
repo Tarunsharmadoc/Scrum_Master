@@ -15,4 +15,5 @@ all:
 	gcc ${CFLAGS}  ${SRCDIR}/utilities.c -o ${OBJDIR}/utilities.o
 	gcc ${CFLAGS}  ${SRCDIR}/userStoriesCRUD.c -o ${OBJDIR}/userStoriesCRUD.o
 	gcc ${CFLAGS}  ${SRCDIR}/taskCRUD.c -o ${OBJDIR}/taskCRUD.o
-	gcc ${OBJDIR}/main.o ${OBJDIR}/utilities.o ${OBJDIR}/userStoriesCRUD.o ${OBJDIR}/taskCRUD.o -o  ${BINDIR}/main.bin
+	gcc ${CFLAGS}  ${SRCDIR}/featureCRUD.c -o ${OBJDIR}/featureCRUD.o
+	gcc ${OBJDIR}/main.o ${OBJDIR}/utilities.o ${OBJDIR}/userStoriesCRUD.o ${OBJDIR}/taskCRUD.o ${OBJDIR}/featureCRUD.o -o  ${BINDIR}/main.bin

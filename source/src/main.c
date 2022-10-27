@@ -10,57 +10,12 @@
 #define TASK_NAME_LEN 100
 #define TASK_DESC_LEN 200
 
-void printFeatures(feature *f)
-{
-	printf("\n----------------------------------Feature Details----------------------------------------------\n");
-	printf("\nFeature ID:\tCompletion Status:\tFeature Name:\tFeature Info:");
-	printf("\n\t%d",f->featureId);
-	printf("\t\t%d",f->completionStatus);
-	printf("\t\t%s",f->featureName);
-	printf("\t%s\n",f->featureDesc);
-	printf("\n--------------------------------END of Feature Details-------------------------------------\n");
-
-}
 
 int main()
 {
-	feature *f1=(feature*) malloc(sizeof(feature));
+	loadFeature();
 	createUserStoryLL();
 	createTaskLLFromCSV();
-	FILE *feature_file=fopen("../external/features.csv","r");
-	if (feature_file==NULL)
-        {
-        	printf("Feature File not found");
-        	exit(0);
-    	}
-	else
-	{
-		char featureFileData[500];
-		fgets(featureFileData,500,feature_file);
-		char* data;
-		data=strtok(featureFileData,",");
-		if ( data != NULL )
-    		{
-			f1->featureId=atoi(data);
-    		}
-		data=strtok(NULL,",");
-		if ( data != NULL )
-    		{
-			f1->completionStatus=atoi(data);
-    		}
-		data=strtok(NULL,",");
-		if ( data != NULL )
-    		{
-			strcpy(f1->featureName,data);
-    		}
-		data=strtok(NULL,",");
-		if ( data != NULL )
-    		{
-			strcpy(f1->featureDesc,data);
-    		}
-	}
-
-	fclose(feature_file);
 	printf("\n\t#######################################################");
     	printf("\n\t## Welcome to Scrum Sprint Management ###");
     	printf("\n\t#######################################################");
@@ -97,7 +52,8 @@ int main()
 					scanf("%d",&tlChoice1);
 					if (tlChoice1==1)
 					{
-						printFeatures(f1);
+						// printFeatures(f1);
+						printFeatures();
 						printf("\n");
 						displayUserStoryLL();
 						printf("\n");
@@ -105,7 +61,8 @@ int main()
 					}
 					else if(tlChoice1==2)
 					{
-						int storyId,featureId,completionStatus;
+						int storyId,featureId;
+						double completionStatus;
 						char storyName[STORY_NAME_LEN];
 						char storyDesc[STORY_DESC_LEN];
 						printf("\nEnter User Story Details:");
@@ -114,7 +71,7 @@ int main()
 						printf("\nEnter Feature ID:");
 						scanf("%d",&featureId);
 						printf("\nEnter Completion Status:");
-						scanf("%d",&completionStatus);
+						scanf("%lf",&completionStatus);
 						printf("\nEnter Story Name:");
 						scanf("%s",storyName);
 						printf("\nEnter Story Description:");

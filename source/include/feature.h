@@ -5,7 +5,7 @@
 typedef struct _feature_
 {
     int featureId;           
-    int completionStatus; 
+    double completionStatus; 
     char featureName[FEATURE_NAME_LEN];
     char featureDesc[FEATURE_DESC_LEN];
     
